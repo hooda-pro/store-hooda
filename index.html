@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hooda Store - متجر التطبيقات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -27,6 +27,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -34,6 +35,7 @@
             color: var(--dark-color);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .page {
@@ -54,36 +56,36 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
         }
 
-        /* صفحة المصادقة */
+        /* صفحة المصادقة - تحسينات للهاتف */
         .logo-header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-top: 20px;
+            margin-bottom: 30px;
+            padding-top: 10px;
         }
 
         .logo-animation {
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: var(--primary-color);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             animation: bounce 2s infinite alternate;
         }
 
         @keyframes bounce {
             0% { transform: translateY(0); }
-            100% { transform: translateY(-15px); }
+            100% { transform: translateY(-10px); }
         }
 
         .logo-header h1 {
-            font-size: 2.8rem;
+            font-size: 2rem;
             color: var(--secondary-color);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .logo-header p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #666;
         }
 
@@ -94,6 +96,7 @@
             max-width: 500px;
             margin: 0 auto;
             overflow: hidden;
+            width: 100%;
         }
 
         .auth-tabs {
@@ -103,14 +106,15 @@
 
         .auth-tab {
             flex: 1;
-            padding: 18px;
+            padding: 15px 10px;
             background: none;
             border: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #666;
             cursor: pointer;
             transition: var(--transition);
+            min-height: 50px;
         }
 
         .auth-tab.active {
@@ -119,7 +123,7 @@
         }
 
         .auth-form {
-            padding: 30px;
+            padding: 20px;
             display: none;
         }
 
@@ -134,31 +138,36 @@
         }
 
         .input-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: relative;
         }
 
         .input-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
             color: var(--dark-color);
+            font-size: 0.9rem;
         }
 
         .input-group label i {
-            margin-left: 8px;
+            margin-left: 6px;
             color: var(--primary-color);
+            font-size: 0.9rem;
         }
 
         .input-group input, 
         .input-group select,
         .input-group textarea {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             border: 2px solid #ddd;
             border-radius: 8px;
             font-size: 1rem;
             transition: var(--transition);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
 
         .input-group input:focus,
@@ -172,50 +181,57 @@
         .password-toggle {
             position: absolute;
             left: 15px;
-            top: 42px;
+            top: 38px;
             cursor: pointer;
             color: #777;
+            z-index: 2;
         }
 
-        /* أنماط جديدة للدول */
+        /* تحسينات إدخال الهاتف للجوال */
         .phone-input-group {
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
         
         .country-code {
-            width: 120px;
+            width: 130px;
+            min-width: 130px;
         }
         
         .phone-number {
             flex: 1;
+            min-width: 150px;
         }
 
         .otp-group {
             background-color: #f8f9fa;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             border-right: 4px solid var(--accent-color);
+            margin-top: 15px;
         }
 
         .otp-hint {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #666;
             margin-top: 8px;
+            line-height: 1.4;
         }
 
         .otp-display {
             background-color: var(--dark-color);
             color: white;
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
             text-align: center;
-            font-size: 1.8rem;
-            letter-spacing: 5px;
-            margin-top: 15px;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            margin-top: 10px;
             font-weight: bold;
             display: none;
             animation: pulse 2s infinite;
+            word-break: break-all;
         }
 
         @keyframes pulse {
@@ -228,7 +244,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 24px;
+            padding: 12px 20px;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
@@ -236,6 +252,8 @@
             cursor: pointer;
             transition: var(--transition);
             gap: 8px;
+            width: 100%;
+            margin-top: 10px;
         }
 
         .btn-primary {
@@ -243,10 +261,10 @@
             color: white;
         }
 
-        .btn-primary:hover {
+        .btn-primary:hover, .btn-primary:active {
             background-color: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .btn-secondary {
@@ -254,7 +272,7 @@
             color: var(--dark-color);
         }
 
-        .btn-secondary:hover {
+        .btn-secondary:hover, .btn-secondary:active {
             background-color: #dee2e6;
         }
 
@@ -263,25 +281,26 @@
             color: white;
         }
 
-        .btn-success:hover {
+        .btn-success:hover, .btn-success:active {
             background-color: #218838;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .btn-logout {
             background-color: var(--danger-color);
             color: white;
             width: auto;
-            padding: 10px 20px;
+            padding: 10px 15px;
             font-size: 0.9rem;
         }
 
         .auth-footer {
-            margin-top: 25px;
+            margin-top: 20px;
             text-align: center;
-            padding-top: 20px;
+            padding-top: 15px;
             border-top: 1px solid #eee;
+            font-size: 0.9rem;
         }
 
         .auth-footer a {
@@ -297,37 +316,39 @@
         /* أنماط معلومات البيانات */
         .data-info {
             background-color: #f8f9fa;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
-            margin-top: 30px;
+            margin-top: 20px;
             border-right: 4px solid var(--primary-color);
             max-width: 500px;
-            margin: 30px auto 0;
+            margin: 20px auto 0;
         }
         
         .data-info h4 {
             color: var(--primary-color);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            font-size: 1.1rem;
         }
         
         .data-stats {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .stat-item {
             background: white;
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 6px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             flex: 1;
-            min-width: 120px;
+            min-width: 100px;
             text-align: center;
+            font-size: 0.9rem;
         }
         
         .stat-item i {
@@ -335,22 +356,24 @@
             margin-left: 5px;
         }
 
-        /* الصفحة الرئيسية */
+        /* الصفحة الرئيسية - تحسينات للجوال */
         .main-header {
             background-color: white;
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 100;
+            width: 100%;
         }
 
         .header-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 15px 20px;
+            padding: 12px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -359,23 +382,40 @@
         }
 
         .logo i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--primary-color);
-            margin-left: 10px;
+            margin-left: 8px;
         }
 
         .logo h2 {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             color: var(--secondary-color);
+        }
+
+        .main-nav {
+            order: 3;
+            width: 100%;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .main-nav.active {
+            display: block;
         }
 
         .main-nav ul {
             display: flex;
             list-style: none;
+            flex-direction: column;
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: var(--shadow);
         }
 
         .main-nav li {
-            margin: 0 10px;
+            margin: 5px 0;
+            width: 100%;
         }
 
         .nav-link {
@@ -386,10 +426,13 @@
             transition: var(--transition);
             display: flex;
             align-items: center;
+            width: 100%;
+            font-size: 0.95rem;
         }
 
         .nav-link i {
             margin-left: 8px;
+            font-size: 1rem;
         }
 
         .nav-link.active, .nav-link:hover {
@@ -400,18 +443,31 @@
         .user-info {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         #user-email {
             color: var(--secondary-color);
             font-weight: 600;
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            padding: 5px;
         }
 
         .main-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 20px 15px;
             min-height: calc(100vh - 140px);
         }
 
@@ -428,22 +484,23 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             border-radius: var(--border-radius);
-            padding: 40px;
+            padding: 25px;
             overflow: hidden;
         }
 
         .hero-content {
             flex: 1;
-            min-width: 300px;
-            padding: 20px;
+            min-width: 100%;
+            padding: 15px;
+            order: 2;
         }
 
         .hero-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             color: var(--secondary-color);
         }
 
@@ -452,26 +509,29 @@
         }
 
         .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1rem;
+            margin-bottom: 20px;
             color: #555;
+            line-height: 1.5;
         }
 
         .hero-image {
             flex: 1;
-            min-width: 300px;
+            min-width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+            order: 1;
+            margin-bottom: 20px;
         }
 
         .phone-animation {
-            width: 280px;
-            height: 500px;
+            width: 200px;
+            height: 350px;
             background-color: #333;
-            border-radius: 30px;
+            border-radius: 25px;
             position: relative;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             overflow: hidden;
         }
 
@@ -479,11 +539,11 @@
             width: 90%;
             height: 94%;
             background-color: #f8f9fa;
-            border-radius: 20px;
+            border-radius: 18px;
             position: absolute;
             top: 3%;
             left: 5%;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -494,60 +554,64 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
+            margin-top: 10px;
         }
 
         .app-icon {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background-color: white;
-            border-radius: 15px;
+            border-radius: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--primary-color);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             animation: float 3s infinite ease-in-out;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
 
         .featured-section, .apps-header, .admin-header {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .featured-section h2, .apps-header h2, .admin-header h2 {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--secondary-color);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
         }
 
         .featured-section h2 i, .apps-header h2 i, .admin-header h2 i {
-            margin-left: 10px;
+            margin-left: 8px;
+            font-size: 1.3rem;
         }
 
         .admin-subtitle {
             color: #666;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .apps-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
+            flex-direction: column;
         }
 
         .search-box {
             position: relative;
-            width: 300px;
+            width: 100%;
         }
 
         .search-box input {
@@ -575,7 +639,7 @@
         .apps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 20px;
         }
 
         .app-card {
@@ -585,20 +649,21 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             cursor: pointer;
+            border: 1px solid #eee;
         }
 
         .app-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .app-icon-container {
-            height: 180px;
+            height: 150px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 4rem;
+            font-size: 3rem;
             color: white;
             position: relative;
         }
@@ -611,59 +676,68 @@
             color: white;
             padding: 4px 8px;
             border-radius: 4px;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: bold;
         }
 
         .app-info {
-            padding: 20px;
+            padding: 15px;
         }
 
         .app-info h4 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
             color: var(--dark-color);
+            line-height: 1.3;
         }
 
         .app-category {
             color: var(--primary-color);
             font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
         }
 
         .app-description {
             color: #666;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            line-height: 1.4;
         }
 
         .app-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 15px;
+            padding-top: 12px;
             border-top: 1px solid #eee;
         }
 
         .app-uploader {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #888;
+            max-width: 60%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .download-btn {
             background-color: var(--accent-color);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .download-btn:hover {
@@ -673,53 +747,52 @@
         /* لوحة المشرف */
         .admin-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 992px) {
-            .admin-container {
-                grid-template-columns: 1fr;
-            }
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
         .admin-card {
             background-color: white;
             border-radius: var(--border-radius);
-            padding: 30px;
+            padding: 20px;
             box-shadow: var(--shadow);
+            border: 1px solid #eee;
         }
 
         .admin-card h3 {
-            font-size: 1.6rem;
+            font-size: 1.3rem;
             color: var(--secondary-color);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
         }
 
         .admin-card h3 i {
-            margin-left: 10px;
+            margin-left: 8px;
+            font-size: 1.2rem;
         }
 
         .file-hint {
             display: block;
             margin-top: 5px;
             color: #777;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            line-height: 1.4;
         }
 
         .admin-apps {
-            max-height: 500px;
+            max-height: 400px;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .admin-app-item {
-            padding: 15px;
+            padding: 12px;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .admin-app-item:last-child {
@@ -727,13 +800,17 @@
         }
 
         .admin-app-info h5 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-bottom: 5px;
+            color: var(--dark-color);
         }
 
         .admin-app-actions {
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            margin-top: 8px;
+            width: 100%;
+            justify-content: flex-end;
         }
 
         .delete-app-btn {
@@ -743,7 +820,10 @@
             padding: 6px 12px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .update-app-btn {
@@ -753,21 +833,24 @@
             padding: 6px 12px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         /* أنماط جديدة لرفع الصور */
         .upload-images-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             gap: 10px;
             margin-top: 10px;
         }
 
         .image-preview {
             position: relative;
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             border: 2px dashed #ddd;
             border-radius: 8px;
             overflow: hidden;
@@ -791,37 +874,41 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.9rem;
+            z-index: 2;
         }
 
         .version-input-group {
             display: flex;
             gap: 10px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .version-input {
             flex: 1;
+            min-width: 120px;
         }
 
         /* نافذة التحديثات */
         .updates-container {
-            margin-top: 20px;
-            padding: 20px;
+            margin-top: 15px;
+            padding: 15px;
             background-color: #f8f9fa;
             border-radius: 8px;
         }
 
         .update-item {
             background: white;
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-right: 4px solid var(--accent-color);
         }
 
@@ -829,7 +916,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .update-version {
@@ -838,16 +927,18 @@
             padding: 4px 8px;
             border-radius: 4px;
             font-weight: bold;
+            font-size: 0.85rem;
         }
 
         .update-date {
             color: #666;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .update-notes {
             color: #333;
             line-height: 1.5;
+            font-size: 0.9rem;
         }
 
         /* النافذة المنبثقة */
@@ -863,6 +954,7 @@
             justify-content: center;
             align-items: center;
             animation: fadeIn 0.3s ease;
+            padding: 15px;
         }
 
         .modal.active {
@@ -872,125 +964,150 @@
         .modal-content {
             background-color: white;
             border-radius: var(--border-radius);
-            width: 90%;
-            max-width: 800px;
+            width: 100%;
+            max-width: 500px;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             animation: slideUp 0.4s ease;
+            -webkit-overflow-scrolling: touch;
         }
 
         @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
+            from { transform: translateY(30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
 
         .modal-header {
-            padding: 20px 30px;
+            padding: 15px 20px;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
         }
 
         .modal-header h3 {
             color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin: 0;
         }
 
         .close-modal {
             background: none;
             border: none;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #777;
             cursor: pointer;
             line-height: 1;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal-body {
-            padding: 30px;
+            padding: 20px;
         }
 
         .app-details {
             display: flex;
             flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .app-icon-large {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             border-radius: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: white;
             position: relative;
         }
 
         .app-version-large {
             position: absolute;
-            bottom: -10px;
-            right: -10px;
+            bottom: -8px;
+            right: -8px;
             background: var(--accent-color);
             color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
             font-weight: bold;
         }
 
         .app-info {
             flex: 1;
-            min-width: 250px;
+            min-width: 100%;
         }
 
         .app-info h4 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 10px;
             color: var(--dark-color);
         }
 
         .app-category, .app-uploader, .app-date {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: #666;
+            font-size: 0.9rem;
         }
 
         .app-description {
-            line-height: 1.7;
-            margin-top: 15px;
-            margin-bottom: 20px;
+            line-height: 1.6;
+            margin-top: 12px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            text-align: right;
         }
 
         /* معرض الصور في النافذة المنبثقة */
         .screenshots-gallery {
-            margin: 30px 0;
+            margin: 20px 0;
         }
 
         .screenshots-gallery h4 {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: var(--secondary-color);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .gallery-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 12px;
         }
 
         .gallery-image {
             width: 100%;
-            height: 150px;
+            height: 120px;
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
             transition: var(--transition);
+            border: 1px solid #eee;
         }
 
         .gallery-image:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .gallery-image img {
@@ -1002,39 +1119,80 @@
         .modal-actions {
             display: flex;
             justify-content: flex-end;
-            gap: 15px;
-            padding-top: 20px;
+            gap: 12px;
+            padding-top: 15px;
             border-top: 1px solid #eee;
+            flex-wrap: wrap;
         }
 
         .main-footer {
             background-color: var(--dark-color);
             color: white;
             text-align: center;
-            padding: 20px;
-            margin-top: 50px;
+            padding: 15px;
+            margin-top: 40px;
+            font-size: 0.9rem;
         }
 
-        /* تصميم متجاوب */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 15px;
+        /* تصميم متجاوب إضافي */
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .logo-header {
+                margin-bottom: 40px;
+            }
+            
+            .logo-animation {
+                font-size: 4rem;
+            }
+            
+            .logo-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .auth-form {
+                padding: 30px;
+            }
+            
+            .auth-tab {
+                padding: 18px;
+                font-size: 1.1rem;
+            }
+            
+            .main-nav {
+                order: 0;
+                width: auto;
+                margin-top: 0;
+                display: block !important;
             }
             
             .main-nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-direction: row;
+                background: none;
+                box-shadow: none;
+                padding: 0;
             }
             
-            .user-info {
-                flex-direction: column;
-                gap: 10px;
+            .main-nav li {
+                margin: 0 8px;
+                width: auto;
             }
             
-            .hero-section {
-                flex-direction: column;
-                text-align: center;
+            .mobile-menu-btn {
+                display: none !important;
+            }
+            
+            .hero-content {
+                min-width: 50%;
+                order: 1;
+            }
+            
+            .hero-image {
+                min-width: 50%;
+                order: 2;
+                margin-bottom: 0;
             }
             
             .hero-content h1 {
@@ -1042,70 +1200,60 @@
             }
             
             .phone-animation {
-                width: 220px;
-                height: 400px;
+                width: 250px;
+                height: 420px;
             }
             
             .apps-header {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row;
+                align-items: center;
             }
             
             .search-box {
-                width: 100%;
-            }
-            
-            .modal-content {
-                width: 95%;
-            }
-            
-            .app-details {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .app-icon-large {
-                margin: 0 auto;
+                width: 300px;
             }
             
             .admin-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            
+            .modal-content {
+                max-width: 700px;
+            }
+            
+            .app-details {
+                flex-direction: row;
+                text-align: right;
+                align-items: flex-start;
+            }
+            
+            .app-info {
+                min-width: 250px;
+            }
+            
+            .btn-primary, .btn-secondary, .btn-success {
+                width: auto;
+            }
+            
+            .admin-app-actions {
+                width: auto;
+                margin-top: 0;
+            }
+            
+            .admin-app-item {
+                flex-wrap: nowrap;
             }
         }
 
-        /* تحسينات للهواتف الصغيرة */
-        @media (max-width: 480px) {
-            .auth-form {
-                padding: 20px;
-            }
-            
-            .logo-header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .auth-tab {
-                padding: 15px 10px;
-                font-size: 1rem;
-            }
-            
+        @media (min-width: 992px) {
             .hero-content h1 {
-                font-size: 1.8rem;
+                font-size: 2.3rem;
             }
             
-            .apps-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .modal-body {
-                padding: 20px;
-            }
-            
-            .modal-actions {
-                flex-direction: column;
-            }
-            
-            .modal-actions button {
-                width: 100%;
+            .phone-animation {
+                width: 280px;
+                height: 470px;
             }
         }
 
@@ -1113,12 +1261,12 @@
         .message {
             position: fixed;
             top: 20px;
-            right: 20px;
-            max-width: 400px;
+            right: 15px;
+            left: 15px;
             background: white;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            padding: 15px 20px;
+            padding: 12px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1126,6 +1274,8 @@
             transform: translateX(150%);
             transition: transform 0.3s ease;
             border-right: 4px solid #4a6fa5;
+            max-width: 400px;
+            margin: 0 auto;
         }
         
         .message.show {
@@ -1147,11 +1297,12 @@
         .message-content {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            flex: 1;
         }
         
         .message-content i {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
         .message-success .message-content i {
@@ -1169,18 +1320,80 @@
         .message-close {
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #777;
             cursor: pointer;
             line-height: 1;
-            margin-right: 10px;
+            margin-right: 5px;
+            padding: 0;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        @media (max-width: 768px) {
+        @media (min-width: 480px) {
             .message {
-                max-width: 90%;
-                right: 5%;
+                left: auto;
+                right: 20px;
+                width: auto;
             }
+        }
+        
+        /* تحسينات إضافية للهواتف */
+        input, select, textarea, button {
+            font-size: 16px !important; /* منع التكبير في iOS */
+        }
+        
+        select {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: left 12px center;
+            background-size: 16px;
+            padding-left: 40px !important;
+        }
+        
+        /* تلميحات اللمس */
+        button, .app-card, .nav-link {
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        /* تحسينات الشاشات الصغيرة جداً */
+        @media (max-width: 360px) {
+            .logo h2 {
+                font-size: 1.2rem;
+            }
+            
+            .logo i {
+                font-size: 1.5rem;
+            }
+            
+            .phone-animation {
+                width: 180px;
+                height: 320px;
+            }
+            
+            .app-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* تحسينات لإدخال OTP */
+        #signup-otp {
+            letter-spacing: 3px;
+            font-size: 1.2rem;
+            text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -1198,8 +1411,8 @@
             
             <div class="auth-container">
                 <div class="auth-tabs">
-                    <button class="auth-tab active" id="login-tab">تسجيل الدخول</button>
-                    <button class="auth-tab" id="signup-tab">إنشاء حساب جديد</button>
+                    <button class="auth-tab active" id="login-tab" type="button">تسجيل الدخول</button>
+                    <button class="auth-tab" id="signup-tab" type="button">إنشاء حساب جديد</button>
                 </div>
                 
                 <!-- نموذج تسجيل الدخول -->
@@ -1289,8 +1502,24 @@
                 </form>
             </div>
             
-            
-    
+            <!-- معلومات البيانات -->
+            <div class="data-info">
+                <h4><i class="fas fa-database"></i> إحصائيات البيانات</h4>
+                <div class="data-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span id="users-count">1</span> مستخدم
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span id="apps-count">4</span> تطبيق
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
     <!-- الصفحة الرئيسية (بعد تسجيل الدخول) -->
     <div id="main-page" class="page">
         <header class="main-header">
@@ -1300,7 +1529,11 @@
                     <h2>Hooda Store</h2>
                 </div>
                 
-                <nav class="main-nav">
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav class="main-nav" id="main-nav">
                     <ul>
                         <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> الرئيسية</a></li>
                         <li><a href="#" class="nav-link" data-page="apps"><i class="fas fa-th"></i> التطبيقات</a></li>
@@ -1456,7 +1689,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="modal-app-title">تفاصيل التطبيق</h3>
-                <button class="close-modal">&times;</button>
+                <button class="close-modal" type="button">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="app-details">
@@ -1490,10 +1723,10 @@
                 </div>
                 
                 <div class="modal-actions">
-                    <button class="btn-success" id="download-app-btn">
+                    <button class="btn-success" id="download-app-btn" type="button">
                         <i class="fas fa-download"></i> تنزيل التطبيق
                     </button>
-                    <button class="btn-secondary close-modal">إغلاق</button>
+                    <button class="btn-secondary close-modal" type="button">إغلاق</button>
                 </div>
             </div>
         </div>
@@ -1504,7 +1737,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3>إصدار تحديث جديد</h3>
-                <button class="close-update-modal">&times;</button>
+                <button class="close-update-modal" type="button">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="update-app-form">
@@ -1648,6 +1881,9 @@
             setupEventListeners();
             checkLoggedInUser();
             updateDataStats();
+            
+            // إضافة class للجسم للتحكم في اللمس
+            document.body.classList.add('loaded');
         });
 
         // تحميل البيانات من localStorage
@@ -1717,16 +1953,40 @@
             // تنقل
             document.getElementById('logout-btn').addEventListener('click', handleLogout);
             document.getElementById('clear-data-btn').addEventListener('click', clearAllData);
+            document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+            
+            // إغلاق القائمة عند النقر خارجها
+            document.addEventListener('click', function(e) {
+                const mainNav = document.getElementById('main-nav');
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                
+                if (window.innerWidth <= 768 && 
+                    mainNav.classList.contains('active') && 
+                    !mainNav.contains(e.target) && 
+                    !mobileMenuBtn.contains(e.target)) {
+                    mainNav.classList.remove('active');
+                }
+            });
             
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const page = this.getAttribute('data-page');
                     switchPage(page);
+                    
+                    // إغلاق القائمة على الجوال
+                    if (window.innerWidth <= 768) {
+                        document.getElementById('main-nav').classList.remove('active');
+                    }
                 });
             });
             
-            document.getElementById('explore-apps-btn').addEventListener('click', () => switchPage('apps'));
+            document.getElementById('explore-apps-btn').addEventListener('click', () => {
+                switchPage('apps');
+                if (window.innerWidth <= 768) {
+                    document.getElementById('main-nav').classList.remove('active');
+                }
+            });
             
             // تطبيقات
             document.getElementById('upload-app-form').addEventListener('submit', handleAppUpload);
@@ -1761,6 +2021,31 @@
             });
             
             document.getElementById('update-app-form').addEventListener('submit', handleUpdateApp);
+            
+            // إعادة ضبط النماذج عند تبديل التبويبات
+            document.getElementById('login-tab').addEventListener('click', function() {
+                document.getElementById('login-form').reset();
+            });
+            
+            document.getElementById('signup-tab').addEventListener('click', function() {
+                document.getElementById('signup-form').reset();
+                document.getElementById('otp-section').style.display = 'none';
+                document.getElementById('otp-display').style.display = 'none';
+                document.getElementById('signup-submit').disabled = true;
+            });
+            
+            // إصلاح مشكلة اللمس على iOS
+            document.querySelectorAll('button, a, input, select, textarea').forEach(el => {
+                el.addEventListener('touchstart', function() {
+                    // لا شيء - فقط لتفعيل اللمس
+                }, { passive: true });
+            });
+        }
+
+        // تبديل قائمة الجوال
+        function toggleMobileMenu() {
+            const nav = document.getElementById('main-nav');
+            nav.classList.toggle('active');
         }
 
         // معالجة رفع الصور
@@ -1780,7 +2065,7 @@
                     const imageDiv = document.createElement('div');
                     imageDiv.className = 'image-preview';
                     imageDiv.innerHTML = `
-                        <img src="${e.target.result}" alt="صورة ${i + 1}">
+                        <img src="${e.target.result}" alt="صورة ${i + 1}" loading="lazy">
                         <button type="button" class="remove-image" data-index="${uploadedImages.length - 1}">×</button>
                     `;
                     
@@ -1807,7 +2092,7 @@
                 const imageDiv = document.createElement('div');
                 imageDiv.className = 'image-preview';
                 imageDiv.innerHTML = `
-                    <img src="${image}" alt="صورة ${index + 1}">
+                    <img src="${image}" alt="صورة ${index + 1}" loading="lazy">
                     <button type="button" class="remove-image" data-index="${index}">×</button>
                 `;
                 
@@ -1880,6 +2165,12 @@
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
             
+            if (!email || !password) {
+                showMessage('يرجى ملء جميع الحقول!', 'error');
+                return;
+            }
+            
+            // تسجيل الدخول كمسؤول
             if (email === ADMIN_ACCOUNT.email && password === ADMIN_ACCOUNT.password) {
                 currentUser = { ...ADMIN_ACCOUNT };
                 saveDataToStorage();
@@ -1888,6 +2179,7 @@
                 return;
             }
             
+            // تسجيل الدخول كمستخدم عادي
             const users = JSON.parse(localStorage.getItem('hooda_users') || '[]');
             const user = users.find(u => u.email === email && u.password === password);
             
@@ -1916,6 +2208,21 @@
                 return;
             }
             
+            // التحقق من صحة رقم الهاتف
+            const phoneRegex = /^[0-9]{8,15}$/;
+            if (!phoneRegex.test(phone)) {
+                showMessage('يرجى إدخال رقم هاتف صحيح (8-15 رقم)!', 'error');
+                return;
+            }
+            
+            // التحقق من أن البريد الإلكتروني غير مستخدم
+            const email = document.getElementById('signup-email').value.trim();
+            const users = JSON.parse(localStorage.getItem('hooda_users') || '[]');
+            if (users.find(u => u.email === email)) {
+                showMessage('هذا البريد الإلكتروني مسجل بالفعل!', 'error');
+                return;
+            }
+            
             const randomIndex = Math.floor(Math.random() * OTP_CODES.length);
             currentOTP = OTP_CODES[randomIndex];
             
@@ -1926,7 +2233,7 @@
             document.getElementById('otp-section').style.display = 'block';
             document.getElementById('signup-submit').disabled = false;
             
-            showMessage(`تم إنشاء رمز التحقق: ${currentOTP}\n(في تطبيق حقيقي، سيتم إرساله إلى الرقم: ${countryCode}${phone})`, 'info');
+            showMessage(`تم إنشاء رمز التحقق: ${currentOTP}`, 'info');
         }
 
         // معالجة إنشاء حساب جديد
@@ -1941,38 +2248,57 @@
             const confirmPassword = document.getElementById('signup-confirm-password').value;
             const otp = document.getElementById('signup-otp').value.trim();
             
+            // التحقق من جميع الحقول
             if (!name || !email || !phone || !countryCode || !password || !confirmPassword || !otp) {
                 showMessage('يرجى ملء جميع الحقول المطلوبة!', 'error');
                 return;
             }
             
-            if (password !== confirmPassword) {
-                showMessage('كلمتا المرور غير متطابقتين!', 'error');
-                return;
-            }
-            
-            if (otp !== currentOTP) {
-                showMessage('رمز التحقق غير صحيح!', 'error');
-                return;
-            }
-            
+            // التحقق من صحة البريد الإلكتروني
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 showMessage('البريد الإلكتروني غير صحيح!', 'error');
                 return;
             }
             
+            // التحقق من تطابق كلمات المرور
+            if (password !== confirmPassword) {
+                showMessage('كلمتا المرور غير متطابقتين!', 'error');
+                return;
+            }
+            
+            // التحقق من قوة كلمة المرور
+            if (password.length < 6) {
+                showMessage('كلمة المرور يجب أن تكون 6 أحرف على الأقل!', 'error');
+                return;
+            }
+            
+            // التحقق من صحة OTP
+            if (otp !== currentOTP) {
+                showMessage('رمز التحقق غير صحيح!', 'error');
+                return;
+            }
+            
+            // التحقق من عدم وجود حساب بنفس البريد
             const users = JSON.parse(localStorage.getItem('hooda_users') || '[]');
             if (users.find(u => u.email === email)) {
                 showMessage('هذا البريد الإلكتروني مسجل بالفعل!', 'error');
                 return;
             }
             
+            // التحقق من عدم وجود حساب بنفس رقم الهاتف
+            const fullPhone = countryCode + phone;
+            if (users.find(u => u.phone === fullPhone)) {
+                showMessage('رقم الهاتف هذا مسجل بالفعل!', 'error');
+                return;
+            }
+            
+            // إنشاء المستخدم الجديد
             const newUser = {
                 id: Date.now(),
                 name,
                 email,
-                phone: countryCode + phone,
+                phone: fullPhone,
                 countryCode,
                 password,
                 isAdmin: false,
@@ -2334,7 +2660,7 @@
                 screenshotsGallery.style.display = 'block';
                 galleryContainer.innerHTML = app.screenshots.map((img, index) => `
                     <div class="gallery-image">
-                        <img src="${img}" alt="صورة ${index + 1}">
+                        <img src="${img}" alt="صورة ${index + 1}" loading="lazy">
                     </div>
                 `).join('');
             } else {
@@ -2373,7 +2699,7 @@
                 return;
             }
             
-            showMessage(`جاري تنزيل ${app.name} v${app.version}... (هذه محاكاة فقط)`, 'info');
+            showMessage(`جاري تنزيل ${app.name} v${app.version}...`, 'info');
             
             setTimeout(() => {
                 document.getElementById('app-details-modal').classList.remove('active');
@@ -2413,6 +2739,16 @@
 
         // عرض رسالة للمستخدم
         function showMessage(message, type = 'info') {
+            // إزالة أي رسائل سابقة
+            document.querySelectorAll('.message').forEach(msg => {
+                msg.classList.remove('show');
+                setTimeout(() => {
+                    if (msg.parentNode) {
+                        msg.parentNode.removeChild(msg);
+                    }
+                }, 300);
+            });
+            
             const messageEl = document.createElement('div');
             messageEl.className = `message message-${type}`;
             messageEl.innerHTML = `
@@ -2420,7 +2756,7 @@
                     <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
                     <span>${message}</span>
                 </div>
-                <button class="message-close">&times;</button>
+                <button class="message-close" type="button">&times;</button>
             `;
             
             document.body.appendChild(messageEl);
@@ -2449,6 +2785,13 @@
                 }
             }, 5000);
         }
+        
+        // إصلاحات للجوال
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('main-nav').classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
