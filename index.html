@@ -59,7 +59,7 @@
             padding: 15px;
         }
 
-        /* صفحة المصادقة - تحسينات للهاتف */
+        /* صفحة المصادقة */
         .logo-header {
             text-align: center;
             margin-bottom: 30px;
@@ -187,7 +187,7 @@
             z-index: 2;
         }
 
-        /* تحسينات إدخال الهاتف للجوال */
+        /* تحسينات إدخال الهاتف */
         .phone-input-group {
             display: flex;
             gap: 8px;
@@ -356,7 +356,7 @@
             margin-left: 5px;
         }
 
-        /* الصفحة الرئيسية - تحسينات للجوال */
+        /* الصفحة الرئيسية */
         .main-header {
             background-color: white;
             box-shadow: var(--shadow);
@@ -455,7 +455,7 @@
         }
 
         .mobile-menu-btn {
-            display: none;
+            display: block;
             background: none;
             border: none;
             font-size: 1.5rem;
@@ -839,7 +839,32 @@
             gap: 5px;
         }
 
-        /* أنماط جديدة لرفع الصور */
+        /* أنماط جديدة لرفع الصور والأيقونات */
+        .icon-preview-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            align-items: center;
+        }
+
+        .icon-preview {
+            width: 80px;
+            height: 80px;
+            border: 2px dashed #ddd;
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+
+        .icon-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .upload-images-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -1029,7 +1054,6 @@
         .app-icon-large {
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             border-radius: 20px;
             display: flex;
             justify-content: center;
@@ -1037,6 +1061,14 @@
             font-size: 2.5rem;
             color: white;
             position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .app-icon-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .app-version-large {
@@ -1049,6 +1081,7 @@
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: bold;
+            z-index: 2;
         }
 
         .app-info {
@@ -1343,7 +1376,7 @@
         
         /* تحسينات إضافية للهواتف */
         input, select, textarea, button {
-            font-size: 16px !important; /* منع التكبير في iOS */
+            font-size: 16px !important;
         }
         
         select {
@@ -1354,7 +1387,6 @@
             padding-left: 40px !important;
         }
         
-        /* تلميحات اللمس */
         button, .app-card, .nav-link {
             cursor: pointer;
             -webkit-user-select: none;
@@ -1362,7 +1394,6 @@
             user-select: none;
         }
         
-        /* تحسينات الشاشات الصغيرة جداً */
         @media (max-width: 360px) {
             .logo h2 {
                 font-size: 1.2rem;
@@ -1388,12 +1419,106 @@
             }
         }
         
-        /* تحسينات لإدخال OTP */
         #signup-otp {
             letter-spacing: 3px;
             font-size: 1.2rem;
             text-align: center;
             font-weight: bold;
+        }
+
+        /* أيقونة التطبيق */
+        .app-icon-img {
+            max-width: 70%;
+            max-height: 70%;
+            object-fit: contain;
+        }
+
+        /* أيقونة النافذة المنبثقة */
+        .app-icon-large-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* أزرار إدارة البيانات الجديدة */
+        .data-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .admin-action-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .backup-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .backup-btn:hover {
+            background-color: #218838;
+        }
+
+        .restore-btn {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .restore-btn:hover {
+            background-color: #e0a800;
+        }
+
+        .clear-data-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .clear-data-btn:hover {
+            background-color: #c82333;
+        }
+
+        .sync-status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .sync-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .sync-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .sync-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
         }
     </style>
 </head>
@@ -1515,7 +1640,11 @@
                         <span id="apps-count">4</span> تطبيق
                     </div>
                 </div>
-                
+                <div class="data-actions">
+                    <button id="backup-data-btn" class="btn-secondary">
+                        <i class="fas fa-cloud-upload-alt"></i> نسخة احتياطية
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -1605,6 +1734,21 @@
                 <div class="admin-header">
                     <h2><i class="fas fa-user-cog"></i> لوحة التحكم - المشرف</h2>
                     <p class="admin-subtitle">مرحبًا <span id="admin-name"></span>، يمكنك هنا رفع تطبيقات جديدة وإدارة المتجر.</p>
+                    
+                    <!-- أزرار إدارة البيانات (للمشرف فقط) -->
+                    <div class="admin-actions" id="admin-actions" style="display: none;">
+                        <button class="admin-action-btn backup-btn" id="admin-backup-btn">
+                            <i class="fas fa-cloud-upload-alt"></i> نسخ احتياطي للبيانات
+                        </button>
+                        <button class="admin-action-btn restore-btn" id="admin-restore-btn">
+                            <i class="fas fa-cloud-download-alt"></i> استعادة البيانات
+                        </button>
+                        <button class="admin-action-btn clear-data-btn" id="admin-clear-data-btn">
+                            <i class="fas fa-trash-alt"></i> مسح جميع البيانات
+                        </button>
+                    </div>
+                    
+                    <div id="sync-status" class="sync-status" style="display: none;"></div>
                 </div>
                 
                 <div class="admin-container">
@@ -1643,8 +1787,15 @@
                             </div>
                             
                             <div class="input-group">
-                                <label for="app-icon"><i class="fas fa-image"></i> أيقونة التطبيق (رابط)</label>
-                                <input type="text" id="app-icon" placeholder="https://example.com/icon.png" value="https://via.placeholder.com/100">
+                                <label for="app-icon-file"><i class="fas fa-image"></i> أيقونة التطبيق (صورة)</label>
+                                <input type="file" id="app-icon-file" accept="image/*">
+                                <small class="file-hint">اختر صورة لأيقونة التطبيق</small>
+                                <div class="icon-preview-container">
+                                    <div class="icon-preview">
+                                        <img id="app-icon-preview" src="" alt="معاينة الأيقونة" style="display: none;">
+                                        <i class="fas fa-image" id="app-icon-placeholder" style="color: #999; font-size: 2rem;"></i>
+                                    </div>
+                                </div>
                             </div>
                             
                             <div class="input-group">
@@ -1679,8 +1830,7 @@
         </main>
         
         <footer class="main-footer">
-            <p>© 2024 Hooda Store - جميع الحقوق محفوظة</p>
-            <p>هذا موقع تجريبي لأغراض التعليم فقط</p>
+            <p>© 2026 Hooda Store - جميع الحقوق محفوظة</p>
         </footer>
     </div>
 
@@ -1694,7 +1844,8 @@
             <div class="modal-body">
                 <div class="app-details">
                     <div class="app-icon-large">
-                        <i class="fas fa-mobile-alt" id="modal-app-icon"></i>
+                        <i class="fas fa-mobile-alt" id="modal-app-icon-fallback"></i>
+                        <img id="modal-app-icon-img" src="" alt="أيقونة التطبيق" style="display: none;" class="app-icon-large-img">
                         <div class="app-version-large" id="modal-app-version"></div>
                     </div>
                     <div class="app-info">
@@ -1726,7 +1877,7 @@
                     <button class="btn-success" id="download-app-btn" type="button">
                         <i class="fas fa-download"></i> تنزيل التطبيق
                     </button>
-                    <button class="btn-secondary close-modal" type="button">إغلاق</button>
+                    <button class="btn-secondary close-modal-btn" type="button">إغلاق</button>
                 </div>
             </div>
         </div>
@@ -1763,7 +1914,7 @@
                         <button type="submit" class="btn-success">
                             <i class="fas fa-upload"></i> رفع التحديث
                         </button>
-                        <button type="button" class="btn-secondary close-update-modal">إلغاء</button>
+                        <button type="button" class="btn-secondary close-update-modal-btn">إلغاء</button>
                     </div>
                 </form>
             </div>
@@ -1789,6 +1940,9 @@
             joinDate: "2024-01-01"
         };
 
+        // رابط Google Apps Script (ضع رابطك هنا بعد إنشائه)
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwdyZ1LJwuZk8WzWdl9_ote4-HYKR0aT-_aETy4BNEj2U1SzbjDdDgGRnLzzGNdkYNbRA/exec";
+
         // بيانات التطبيقات الافتراضية مع تحديثات
         const DEFAULT_APPS = [
             {
@@ -1797,6 +1951,7 @@
                 description: "تطبيق يحتوي على مجموعة من الألعاب المسلية والمسابقات الشيقة",
                 category: "ألعاب",
                 icon: "fas fa-gamepad",
+                iconImage: "",
                 uploader: "المشرف الرئيسي",
                 version: "1.2.1",
                 date: "2024-01-15",
@@ -1826,6 +1981,7 @@
                 description: "استمع إلى أفضل الأغاني العربية والعالمية بدون انقطاع",
                 category: "ترفيه",
                 icon: "fas fa-music",
+                iconImage: "",
                 uploader: "المشرف الرئيسي",
                 version: "2.0.3",
                 date: "2024-02-10",
@@ -1845,6 +2001,7 @@
                 description: "تعلم البرمجة من الصفر مع دروس تفاعلية وتمارين عملية",
                 category: "تعليم",
                 icon: "fas fa-code",
+                iconImage: "",
                 uploader: "المشرف الرئيسي",
                 version: "1.5.0",
                 date: "2024-03-05",
@@ -1858,6 +2015,7 @@
                 description: "تطبيق كاميرا متقدم مع فلترات وتأثيرات رائعة",
                 category: "أدوات",
                 icon: "fas fa-camera",
+                iconImage: "",
                 uploader: "المشرف الرئيسي",
                 version: "1.0.0",
                 date: "2024-03-10",
@@ -1874,6 +2032,7 @@
         let nextAppId = 5;
         let selectedAppForUpdate = null;
         let uploadedImages = [];
+        let uploadedIconImage = "";
 
         // تهيئة الموقع عند التحميل
         document.addEventListener('DOMContentLoaded', function() {
@@ -1950,10 +2109,15 @@
             document.getElementById('request-otp-btn').addEventListener('click', generateOTP);
             document.getElementById('signup-form').addEventListener('submit', handleSignup);
             
-            // تنقل
+            // التنقل
             document.getElementById('logout-btn').addEventListener('click', handleLogout);
-            document.getElementById('clear-data-btn').addEventListener('click', clearAllData);
+            document.getElementById('backup-data-btn').addEventListener('click', backupToGoogleSheets);
             document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+            
+            // أزرار المشرف
+            document.getElementById('admin-backup-btn').addEventListener('click', backupToGoogleSheets);
+            document.getElementById('admin-restore-btn').addEventListener('click', restoreFromGoogleSheets);
+            document.getElementById('admin-clear-data-btn').addEventListener('click', clearAllData);
             
             // إغلاق القائمة عند النقر خارجها
             document.addEventListener('click', function(e) {
@@ -1992,15 +2156,16 @@
             document.getElementById('upload-app-form').addEventListener('submit', handleAppUpload);
             document.getElementById('app-search').addEventListener('input', filterApps);
             document.getElementById('app-screenshots').addEventListener('change', handleImageUpload);
+            document.getElementById('app-icon-file').addEventListener('change', handleIconUpload);
             
             // نوافذ منبثقة
-            document.querySelectorAll('.close-modal').forEach(btn => {
+            document.querySelectorAll('.close-modal, .close-modal-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     document.getElementById('app-details-modal').classList.remove('active');
                 });
             });
             
-            document.querySelectorAll('.close-update-modal').forEach(btn => {
+            document.querySelectorAll('.close-update-modal, .close-update-modal-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     document.getElementById('update-app-modal').classList.remove('active');
                 });
@@ -2036,16 +2201,28 @@
             
             // إصلاح مشكلة اللمس على iOS
             document.querySelectorAll('button, a, input, select, textarea').forEach(el => {
-                el.addEventListener('touchstart', function() {
-                    // لا شيء - فقط لتفعيل اللمس
-                }, { passive: true });
+                el.addEventListener('touchstart', function() {}, { passive: true });
             });
         }
 
-        // تبديل قائمة الجوال
-        function toggleMobileMenu() {
-            const nav = document.getElementById('main-nav');
-            nav.classList.toggle('active');
+        // معالجة رفع أيقونة التطبيق
+        function handleIconUpload(e) {
+            const file = e.target.files[0];
+            const preview = document.getElementById('app-icon-preview');
+            const placeholder = document.getElementById('app-icon-placeholder');
+            
+            if (file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    uploadedIconImage = e.target.result;
+                    preview.src = uploadedIconImage;
+                    preview.style.display = 'block';
+                    placeholder.style.display = 'none';
+                };
+                
+                reader.readAsDataURL(file);
+            }
         }
 
         // معالجة رفع الصور
@@ -2083,6 +2260,12 @@
             }
         }
 
+        // تبديل قائمة الجوال
+        function toggleMobileMenu() {
+            const nav = document.getElementById('main-nav');
+            nav.classList.toggle('active');
+        }
+
         // تحديث معاينة الصور
         function updateImagePreviews() {
             const previewContainer = document.getElementById('screenshots-preview');
@@ -2117,10 +2300,12 @@
                 
                 if (currentUser.email === ADMIN_ACCOUNT.email) {
                     document.getElementById('admin-nav').style.display = 'block';
+                    document.getElementById('admin-actions').style.display = 'flex';
                     displayAdminApps();
                     document.getElementById('admin-name').textContent = currentUser.name;
                 } else {
                     document.getElementById('admin-nav').style.display = 'none';
+                    document.getElementById('admin-actions').style.display = 'none';
                 }
             } else {
                 document.getElementById('auth-page').classList.add('active');
@@ -2365,7 +2550,6 @@
             const description = document.getElementById('app-description').value.trim();
             const category = document.getElementById('app-category').value;
             const version = document.getElementById('app-version').value.trim();
-            const icon = document.getElementById('app-icon').value.trim();
             const file = document.getElementById('app-file').files[0];
             
             if (!name || !description || !category || !version) {
@@ -2378,12 +2562,17 @@
                 return;
             }
             
+            // استخدام الأيقونة المرفوعة أو أيقونة افتراضية
+            const icon = uploadedIconImage ? "" : "fas fa-mobile-alt";
+            const iconImage = uploadedIconImage || "";
+            
             const newApp = {
                 id: nextAppId++,
                 name,
                 description,
                 category,
-                icon: icon || 'fas fa-mobile-alt',
+                icon: icon,
+                iconImage: iconImage,
                 uploader: currentUser.name,
                 version,
                 date: new Date().toISOString().split('T')[0],
@@ -2395,9 +2584,13 @@
             apps.push(newApp);
             saveDataToStorage();
             
+            // إعادة تعيين النموذج
             document.getElementById('upload-app-form').reset();
             document.getElementById('screenshots-preview').innerHTML = '';
+            document.getElementById('app-icon-preview').style.display = 'none';
+            document.getElementById('app-icon-placeholder').style.display = 'block';
             uploadedImages = [];
+            uploadedIconImage = "";
             
             displayFeaturedApps();
             displayAllApps();
@@ -2474,10 +2667,20 @@
             
             featuredContainer.innerHTML = featuredApps.map(app => createAppCard(app)).join('');
             
+            // إضافة أحداث النقر
             document.querySelectorAll('#featured-apps .app-card').forEach(card => {
                 card.addEventListener('click', function() {
                     const appId = parseInt(this.getAttribute('data-app-id'));
                     showAppDetails(appId);
+                });
+            });
+            
+            // إضافة أحداث لأزرار التنزيل
+            document.querySelectorAll('#featured-apps .download-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const appId = parseInt(this.getAttribute('data-app-id'));
+                    downloadAppFromButton(appId);
                 });
             });
         }
@@ -2493,10 +2696,20 @@
             
             allAppsContainer.innerHTML = apps.map(app => createAppCard(app)).join('');
             
+            // إضافة أحداث النقر
             document.querySelectorAll('#all-apps .app-card').forEach(card => {
                 card.addEventListener('click', function() {
                     const appId = parseInt(this.getAttribute('data-app-id'));
                     showAppDetails(appId);
+                });
+            });
+            
+            // إضافة أحداث لأزرار التنزيل
+            document.querySelectorAll('#all-apps .download-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const appId = parseInt(this.getAttribute('data-app-id'));
+                    downloadAppFromButton(appId);
                 });
             });
         }
@@ -2553,10 +2766,14 @@
 
         // إنشاء بطاقة تطبيق
         function createAppCard(app) {
+            const iconHTML = app.iconImage 
+                ? `<img src="${app.iconImage}" alt="${app.name}" class="app-icon-img">`
+                : `<i class="${app.icon || 'fas fa-mobile-alt'}"></i>`;
+            
             return `
                 <div class="app-card" data-app-id="${app.id}">
                     <div class="app-icon-container">
-                        <i class="${app.icon || 'fas fa-mobile-alt'}"></i>
+                        ${iconHTML}
                         ${app.version ? `<div class="app-version">v${app.version}</div>` : ''}
                     </div>
                     <div class="app-info">
@@ -2572,6 +2789,18 @@
                     </div>
                 </div>
             `;
+        }
+
+        // تنزيل التطبيق من الزر
+        function downloadAppFromButton(appId) {
+            const app = apps.find(a => a.id === appId);
+            
+            if (!app) {
+                showMessage('التطبيق غير موجود!', 'error');
+                return;
+            }
+            
+            showMessage(`جاري تنزيل ${app.name} v${app.version}...`, 'info');
         }
 
         // حذف تطبيق
@@ -2615,10 +2844,20 @@
             
             allAppsContainer.innerHTML = filteredApps.map(app => createAppCard(app)).join('');
             
+            // إضافة أحداث النقر
             document.querySelectorAll('#all-apps .app-card').forEach(card => {
                 card.addEventListener('click', function() {
                     const appId = parseInt(this.getAttribute('data-app-id'));
                     showAppDetails(appId);
+                });
+            });
+            
+            // إضافة أحداث لأزرار التنزيل
+            document.querySelectorAll('#all-apps .download-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const appId = parseInt(this.getAttribute('data-app-id'));
+                    downloadAppFromButton(appId);
                 });
             });
         }
@@ -2640,14 +2879,17 @@
             document.getElementById('modal-app-date').textContent = `تاريخ الإصدار: ${app.date}`;
             document.getElementById('modal-app-version').textContent = `v${app.version}`;
             
-            const modalIcon = document.getElementById('modal-app-icon');
-            if (app.icon.startsWith('http')) {
-                modalIcon.className = '';
-                modalIcon.style.backgroundImage = `url('${app.icon}')`;
-                modalIcon.style.backgroundSize = 'cover';
+            const modalIconFallback = document.getElementById('modal-app-icon-fallback');
+            const modalIconImg = document.getElementById('modal-app-icon-img');
+            
+            if (app.iconImage) {
+                modalIconImg.src = app.iconImage;
+                modalIconImg.style.display = 'block';
+                modalIconFallback.style.display = 'none';
             } else {
-                modalIcon.className = app.icon;
-                modalIcon.style.backgroundImage = 'none';
+                modalIconFallback.className = app.icon || 'fas fa-mobile-alt';
+                modalIconFallback.style.display = 'flex';
+                modalIconImg.style.display = 'none';
             }
             
             document.getElementById('download-app-btn').setAttribute('data-app-id', appId);
@@ -2706,12 +2948,196 @@
             }, 2000);
         }
 
-        // مسح جميع البيانات
+        // حفظ بيانات احتياطية على Google Sheets
+        async function backupToGoogleSheets() {
+            if (!confirm('هل تريد إنشاء نسخة احتياطية للبيانات على Google Sheets؟')) {
+                return;
+            }
+            
+            try {
+                showSyncStatus('جاري إنشاء نسخة احتياطية...', 'info');
+                
+                const users = JSON.parse(localStorage.getItem('hooda_users') || '[]');
+                const appsData = JSON.parse(localStorage.getItem('hooda_apps') || '[]');
+                
+                const dataToSave = {
+                    users: users,
+                    apps: appsData,
+                    backupDate: new Date().toISOString(),
+                    backupBy: currentUser ? currentUser.email : 'غير مسجل'
+                };
+                
+                // استخدم Proxy لتجاوز مشكلة CORS
+                const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+                const targetUrl = GOOGLE_SCRIPT_URL;
+                
+                const response = await fetch(proxyUrl + targetUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        action: 'saveData',
+                        type: 'backup',
+                        content: dataToSave
+                    })
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.success) {
+                        showSyncStatus('تم إنشاء النسخة الاحتياطية بنجاح!', 'success');
+                        showMessage('تم حفظ البيانات على Google Sheets', 'success');
+                    } else {
+                        throw new Error(result.message);
+                    }
+                } else {
+                    throw new Error('فشل الاتصال بالسيرفر');
+                }
+                
+            } catch (error) {
+                console.error('Error backing up data:', error);
+                showSyncStatus('فشل في إنشاء النسخة الاحتياطية', 'error');
+                showMessage('حدث خطأ أثناء حفظ البيانات: ' + error.message, 'error');
+                
+                // بديل: حفظ البيانات محلياً كملف
+                saveLocalBackup(dataToSave);
+            }
+        }
+
+        // حفظ نسخة احتياطية محلية
+        function saveLocalBackup(data) {
+            try {
+                const backupData = {
+                    ...data,
+                    localBackup: true,
+                    backupDate: new Date().toISOString()
+                };
+                
+                localStorage.setItem('hooda_backup', JSON.stringify(backupData));
+                showMessage('تم حفظ نسخة احتياطية محلية', 'info');
+            } catch (e) {
+                console.error('Error saving local backup:', e);
+            }
+        }
+
+        // استعادة البيانات من Google Sheets
+        async function restoreFromGoogleSheets() {
+            if (!confirm('هل تريد استعادة البيانات من النسخة الاحتياطية؟ سيتم استبدال البيانات الحالية.')) {
+                return;
+            }
+            
+            try {
+                showSyncStatus('جاري استعادة البيانات...', 'info');
+                
+                // استخدم Proxy لتجاوز مشكلة CORS
+                const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+                const targetUrl = `${GOOGLE_SCRIPT_URL}?action=loadData&type=backup&t=${Date.now()}`;
+                
+                const response = await fetch(proxyUrl + targetUrl, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    if (data.success && data.data) {
+                        const backupData = data.data;
+                        
+                        // استعادة المستخدمين
+                        if (backupData.users) {
+                            localStorage.setItem('hooda_users', JSON.stringify(backupData.users));
+                        }
+                        
+                        // استعادة التطبيقات
+                        if (backupData.apps) {
+                            localStorage.setItem('hooda_apps', JSON.stringify(backupData.apps));
+                            apps = backupData.apps;
+                            
+                            // تحديث nextAppId
+                            const maxId = apps.reduce((max, app) => Math.max(max, app.id), 0);
+                            nextAppId = maxId + 1;
+                        }
+                        
+                        // تحديث الواجهة
+                        loadDataFromStorage();
+                        displayFeaturedApps();
+                        displayAllApps();
+                        
+                        if (currentUser && currentUser.email === ADMIN_ACCOUNT.email) {
+                            displayAdminApps();
+                        }
+                        
+                        showSyncStatus('تم استعادة البيانات بنجاح!', 'success');
+                        showMessage('تم استعادة البيانات من النسخة الاحتياطية', 'success');
+                        
+                    } else {
+                        throw new Error('No backup data found');
+                    }
+                    
+                } else {
+                    throw new Error('فشل الاتصال بالسيرفر');
+                }
+                
+            } catch (error) {
+                console.error('Error restoring data:', error);
+                
+                // محاولة الاستعادة من النسخة المحلية
+                try {
+                    const localBackup = localStorage.getItem('hooda_backup');
+                    if (localBackup) {
+                        const backupData = JSON.parse(localBackup);
+                        
+                        if (backupData.users) {
+                            localStorage.setItem('hooda_users', JSON.stringify(backupData.users));
+                        }
+                        
+                        if (backupData.apps) {
+                            localStorage.setItem('hooda_apps', JSON.stringify(backupData.apps));
+                            apps = backupData.apps;
+                            
+                            const maxId = apps.reduce((max, app) => Math.max(max, app.id), 0);
+                            nextAppId = maxId + 1;
+                        }
+                        
+                        loadDataFromStorage();
+                        displayFeaturedApps();
+                        displayAllApps();
+                        
+                        if (currentUser && currentUser.email === ADMIN_ACCOUNT.email) {
+                            displayAdminApps();
+                        }
+                        
+                        showSyncStatus('تم استعادة البيانات من النسخة المحلية!', 'success');
+                        showMessage('تم استعادة البيانات من النسخة المحلية', 'success');
+                    } else {
+                        throw new Error('لا توجد نسخة احتياطية');
+                    }
+                } catch (localError) {
+                    showSyncStatus('فشل في استعادة البيانات', 'error');
+                    showMessage('لم يتم العثور على نسخة احتياطية', 'error');
+                }
+            }
+        }
+
+        // مسح جميع البيانات (للمشرف فقط)
         function clearAllData() {
+            if (!currentUser || currentUser.email !== ADMIN_ACCOUNT.email) {
+                showMessage('ليس لديك صلاحية مسح البيانات!', 'error');
+                return;
+            }
+            
             if (!confirm('هل أنت متأكد من مسح جميع البيانات؟ سيتم حذف جميع الحسابات والتطبيقات!')) {
                 return;
             }
             
+            // حفظ نسخة احتياطية قبل المسح
+            backupToGoogleSheets();
+            
+            // مسح البيانات المحلية
             localStorage.removeItem('hooda_users');
             localStorage.removeItem('hooda_current_user');
             localStorage.removeItem('hooda_apps');
@@ -2720,6 +3146,7 @@
             apps = [...DEFAULT_APPS];
             nextAppId = 5;
             uploadedImages = [];
+            uploadedIconImage = "";
             
             const initialUsers = [ADMIN_ACCOUNT];
             localStorage.setItem('hooda_users', JSON.stringify(initialUsers));
@@ -2735,6 +3162,18 @@
             document.getElementById('signup-submit').disabled = true;
             
             showMessage('تم مسح جميع البيانات بنجاح!', 'info');
+        }
+
+        // عرض حالة المزامنة
+        function showSyncStatus(message, type) {
+            const statusEl = document.getElementById('sync-status');
+            statusEl.textContent = message;
+            statusEl.className = `sync-status sync-${type}`;
+            statusEl.style.display = 'block';
+            
+            setTimeout(() => {
+                statusEl.style.display = 'none';
+            }, 5000);
         }
 
         // عرض رسالة للمستخدم
