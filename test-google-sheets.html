@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>اختبار اتصال Google Sheets</title>
+    <style>
+        body { font-family: 'Cairo', sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #4a6fa5; text-align: center; }
+        .btn { background: #4a6fa5; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; font-size: 16px; }
+        .btn:hover { background: #166088; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 5px; background: #f8f9fa; border: 1px solid #ddd; min-height: 100px; }
+        .success { color: green; }
+        .error { color: red; }
+        .loading { color: #ffc107; }
+        .log { background: #333; color: #0f0; padding: 10px; border-radius: 5px; font-family: monospace; margin-top: 10px; max-height: 200px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 اختبار اتصال Google Sheets</h1>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <button class="btn" onclick="testConnection()">📡 اختبار الاتصال</button>
+            <button class="btn" onclick="testSaveUser()">➕ اختبار حفظ مستخدم</button>
+            <button class="btn" onclick="testLoadUsers()">📥 اختبار جلب المستخدمين</button>
+            <button class="btn" onclick="openGoogleSheets()">📊 فتح Google Sheets</button>
+            <button class="btn" onclick="testDirectFetch()">🔗 اختبار Fetch مباشر</button>
+        </div>
+        
+        <div id="result" class="result">
+            <!-- النتائج تظهر هنا -->
+        </div>
+        
+        <div id="log" class="log"></div>
+        
+        <div style="margin-top: 30px; padding: 15px; background: #e8f4fd; border-radius: 5px;">
+            <h3>📝 معلومات مهمة:</h3>
+            <p>رابط Google Script: <code id="script-url"></code></p>
+            <p>Google Sheets ID: <code>1H6xuC_E_yqWU9j1ARV_Vq0AHzs5IXYsXsd0HTQCEIvc</code></p>
+            <p><a href="https://docs.google.com/spreadsheets/d/1H6xuC_E_yqWU9j1ARV_Vq0AHzs5IXYsXsd0HTQCEIvc/edit#gid=0" target="_blank">📊 فتح Google Sheets</a></p>
+            <p><a href="https://script.google.com/home/projects/AKfycbxKXyXjSPb1MHFpPzuIN4C5zN4a6u5cWR2bn4nTp2AQbFlKWcIfgmKBDIRIJ_UfBNxn/edit" target="_blank">⚙️ فتح Google Apps Script</a></p>
+        </div>
+    </div>
+
+    <script>
+        // رابط Google Apps Script
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxKXyXjSPb1MHFpPzuIN4C5zN4a6u5cWR2bn4nTp2AQbFlKWcIfgmKBDIRIJ_UfBNxn/exec";
+        
+        // عرض الرابط في الصفحة
+        document.getElementById('script-url').textContent = GOOGLE_SCRIPT_URL;
+        
+        // سجل الديباج
+        let logContent = '';
+        
+        function addLog(message) {
+            logContent += new Date().toLocaleTimeString() + ' - ' + message + '\n';
+            document.getElementById('log').textContent = logContent;
+            document.getElementById('log').scrollTop = document.getElementById('log').scrollHeight;
+            console.log(message);
+        }
+        
+        // عرض النتائج
+        function showResult(message, type = 'info') {
+            const resultDiv = document.getElementById('result');
+            const color = type === 'success' ? 'green' : 
+                         type === 'error' ? 'red' : 
+                         type === 'loading' ? '#ffc107' : 'black';
+            
+            resultDiv.innerHTML = `<div style="color: ${color}; font-weight: bold;">${message}</div>`;
+            addLog(`النتيجة: ${message}`);
+        }
+        
+        // دالة إرسال الطلب المحسنة
+        async function sendGoogleRequest(url, options = {}) {
+            addLog(`إرسال طلب إلى: ${url}`);
+            
+            try {
+                // إعداد خيارات Fetch
+                const fetchOptions = {
+                    ...options,
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    credentials: 'omit'
+                };
+                
+                // إضافة Content-Type لطلبات POST
+                if (options.method === 'POST') {
+                    fetchOptions.headers = {
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    };
+                }
+                
+                addLog(`خيارات الطلب: ${JSON.stringify(fetchOptions)}`);
+                
+                const response = await fetch(url, fetchOptions);
+                
+                addLog(`حالة الاستجابة: ${response.status} ${response.statusText}`);
+                
+                if (response.ok) {
+                    try {
+                        const data = await response.json();
+                        addLog(`✅ بيانات الاستجابة: ${JSON.stringify(data).substring(0, 200)}...`);
+                        return { success: true, data: data };
+                    } catch (jsonError) {
+                        addLog(`⚠️ خطأ في تحليل JSON: ${jsonError.message}`);
+                        return { success: false, error: 'خطأ في تحليل JSON' };
+                    }
+                } else {
+                    addLog(`❌ خطأ HTTP: ${response.status}`);
+                    return { 
+                        success: false, 
+                        error: `HTTP ${response.status}: ${response.statusText}` 
+                    };
+                }
+                
+            } catch (error) {
+                addLog(`❌ خطأ في الإرسال: ${error.message}`);
+                return { success: false, error: error.message };
+            }
+        }
+        
+        // اختبار الاتصال البسيط
+        async function testConnection() {
+            showResult('جاري اختبار الاتصال...', 'loading');
+            
+            const url = `${GOOGLE_SCRIPT_URL}?action=test&_=${Date.now()}`;
+            const result = await sendGoogleRequest(url);
+            
+            if (result.success) {
+                showResult(`✅ الاتصال ناجح!<br>الرسالة: ${result.data.message}<br>الوقت: ${result.data.timestamp}`, 'success');
+            } else {
+                showResult(`❌ فشل الاتصال:<br>${result.error}`, 'error');
+            }
+        }
+        
+        // اختبار حفظ مستخدم جديد
+        async function testSaveUser() {
+            showResult('جاري حفظ مستخدم تجريبي...', 'loading');
+            
+            // بيانات مستخدم تجريبي
+            const testUser = {
+                id: Date.now(),
+                name: "مستخدم اختبار",
+                email: `test${Date.now()}@example.com`,
+                phone: "+20123456789",
+                countryCode: "+20",
+                password: "test123",
+                joinDate: new Date().toISOString().split('T')[0],
+                isAdmin: false
+            };
+            
+            const users = [testUser];
+            
+            const result = await sendGoogleRequest(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    action: 'saveUsers',
+                    users: users
+                })
+            });
+            
+            if (result.success) {
+                if (result.data.success) {
+                    showResult(`✅ تم حفظ المستخدم بنجاح!<br>
+                              <strong>الاسم:</strong> ${testUser.name}<br>
+                              <strong>البريد:</strong> ${testUser.email}<br>
+                              <strong>رقم الهاتف:</strong> ${testUser.phone}<br>
+                              <strong>عدد المستخدمين:</strong> ${result.data.count}<br>
+                              <strong>الوقت:</strong> ${result.data.timestamp}<br><br>
+                              <button class="btn" onclick="testLoadUsers()" style="padding: 5px 10px; font-size: 14px;">
+                                تحقق من وجوده الآن
+                              </button>`, 'success');
+                } else {
+                    showResult(`⚠️ استجابة غير متوقعة:<br>${result.data.message}<br>Stack: ${result.data.stack}`, 'error');
+                }
+            } else {
+                showResult(`❌ فشل الحفظ:<br>${result.error}`, 'error');
+            }
+        }
+        
+        // اختبار جلب المستخدمين
+        async function testLoadUsers() {
+            showResult('جاري تحميل المستخدمين...', 'loading');
+            
+            const url = `${GOOGLE_SCRIPT_URL}?action=getUsers&_=${Date.now()}`;
+            const result = await sendGoogleRequest(url);
+            
+            if (result.success) {
+                if (result.data.success) {
+                    const users = result.data.users || [];
+                    
+                    if (users.length > 0) {
+                        let userList = '<h4>📋 قائمة المستخدمين في Google Sheets:</h4>';
+                        users.forEach(user => {
+                            userList += `
+                                <div style="margin: 10px 0; padding: 10px; background: white; border-radius: 5px; border: 1px solid #eee;">
+                                    <strong>${user.name}</strong> (ID: ${user.id})<br>
+                                    <small>${user.email} | ${user.phone} | ${user.isAdmin ? '👑 مشرف' : '👤 مستخدم عادي'}</small><br>
+                                    <small>تاريخ الانضمام: ${user.joinDate}</small>
+                                </div>
+                            `;
+                        });
+                        
+                        showResult(`✅ تم تحميل ${users.length} مستخدم<br>${userList}`, 'success');
+                    } else {
+                        showResult('📭 لا توجد مستخدمين في قاعدة البيانات بعد.', 'info');
+                    }
+                } else {
+                    showResult(`⚠️ استجابة غير متوقعة:<br>${result.data.message}`, 'error');
+                }
+            } else {
+                showResult(`❌ فشل التحميل:<br>${result.error}`, 'error');
+            }
+        }
+        
+        // اختبار Fetch مباشر
+        async function testDirectFetch() {
+            showResult('جاري اختبار Fetch مباشر...', 'loading');
+            
+            const testUrl = `${GOOGLE_SCRIPT_URL}?action=test&_=${Date.now()}`;
+            
+            try {
+                addLog(`📤 اختبار Fetch مباشر إلى: ${testUrl}`);
+                
+                const response = await fetch(testUrl, {
+                    mode: 'cors',
+                    cache: 'no-cache'
+                });
+                
+                addLog(`📥 حالة Fetch: ${response.status} ${response.statusText}`);
+                
+                if (response.ok) {
+                    const text = await response.text();
+                    addLog(`📄 نص الاستجابة: ${text.substring(0, 100)}...`);
+                    
+                    try {
+                        const data = JSON.parse(text);
+                        showResult(`✅ Fetch مباشر ناجح!<br>البيانات: ${JSON.stringify(data)}`, 'success');
+                    } catch (e) {
+                        showResult(`⚠️ استجابة غير JSON: ${text.substring(0, 50)}...`, 'warning');
+                    }
+                } else {
+                    showResult(`❌ Fetch مباشر فشل: ${response.status}`, 'error');
+                }
+                
+            } catch (error) {
+                addLog(`❌ خطأ Fetch: ${error.message}`);
+                showResult(`❌ خطأ Fetch: ${error.message}`, 'error');
+            }
+        }
+        
+        // فتح Google Sheets
+        function openGoogleSheets() {
+            window.open('https://docs.google.com/spreadsheets/d/1H6xuC_E_yqWU9j1ARV_Vq0AHzs5IXYsXsd0HTQCEIvc/edit#gid=0', '_blank');
+            addLog('فتح Google Sheets...');
+        }
+        
+        // اختبار تلقائي عند فتح الصفحة
+        window.onload = function() {
+            addLog('صفحة الاختبار جاهزة');
+            addLog(`رابط السكربت: ${GOOGLE_SCRIPT_URL}`);
+            
+            // اختبار بسيط للاتصال
+            setTimeout(() => {
+                const url = `${GOOGLE_SCRIPT_URL}?action=test&t=${Date.now()}`;
+                fetch(url, { mode: 'cors' })
+                    .then(response => {
+                        addLog(`اختبار اتصال تلقائي - الحالة: ${response.status}`);
+                        showResult(`حالة الاتصال الأولي: ${response.status === 200 ? '✅ جيد' : '⚠️ يوجد مشكلة'}`, 
+                                  response.status === 200 ? 'success' : 'warning');
+                    })
+                    .catch(error => {
+                        addLog(`خطأ في الاتصال التلقائي: ${error.message}`);
+                        showResult('❌ فشل الاتصال التلقائي', 'error');
+                    });
+            }, 1000);
+        };
+    </script>
+</body>
+</html>

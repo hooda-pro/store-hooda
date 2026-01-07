@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>اختبار مبسط للاتصال</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        button { margin: 5px; padding: 10px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>اختبار اتصال Google Sheets</h1>
+    
+    <div>
+        <button onclick="testGET()">اختبار GET</button>
+        <button onclick="testPOST()">اختبار POST</button>
+        <button onclick="openSheets()">فتح Google Sheets</button>
+    </div>
+    
+    <div id="result" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    
+    <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxKXyXjSPb1MHFpPzuIN4C5zN4a6u5cWR2bn4nTp2AQbFlKWcIfgmKBDIRIJ_UfBNxn/exec";
+        
+        async function testGET() {
+            showResult('جاري اختبار GET...', 'info');
+            
+            try {
+                // طريقة 1: fetch مباشر
+                const response = await fetch(`${SCRIPT_URL}?action=test&t=${Date.now()}`);
+                const text = await response.text();
+                
+                showResult(`✅ GET ناجح (${response.status})<br>${text}`, 'success');
+                
+                // طريقة 2: عبر proxy
+                try {
+                    const proxyResponse = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(SCRIPT_URL + '?action=test')}`);
+                    const proxyData = await proxyResponse.json();
+                    showResult(`✅ Proxy ناجح:<br>${proxyData.contents}`, 'success');
+                } catch (proxyError) {
+                    console.log('Proxy failed:', proxyError);
+                }
+                
+            } catch (error) {
+                showResult(`❌ فشل GET: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testPOST() {
+            showResult('جاري اختبار POST...', 'info');
+            
+            const testData = {
+                action: 'saveUsers',
+                users: [{
+                    id: Date.now(),
+                    name: "Test User",
+                    email: `test${Date.now()}@example.com`,
+                    phone: "+20123456789",
+                    countryCode: "+20",
+                    password: "test123",
+                    joinDate: new Date().toISOString().split('T')[0],
+                    isAdmin: false
+                }]
+            };
+            
+            try {
+                // المحاولة الأولى: POST عادي
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                if (response.ok) {
+                    const text = await response.text();
+                    showResult(`✅ POST ناجح (${response.status})<br>${text}`, 'success');
+                } else {
+                    showResult(`❌ POST فشل: ${response.status}`, 'error');
+                }
+                
+            } catch (error) {
+                showResult(`❌ فشل POST: ${error.message}`, 'error');
+                
+                // المحاولة الثانية: باستخدام FormData
+                try {
+                    const formData = new FormData();
+                    formData.append('data', JSON.stringify(testData));
+                    
+                    const formResponse = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (formResponse.ok) {
+                        showResult(`✅ FormData POST ناجح`, 'success');
+                    }
+                } catch (formError) {
+                    console.log('FormData also failed:', formError);
+                }
+            }
+        }
+        
+        function openSheets() {
+            window.open('https://docs.google.com/spreadsheets/d/1H6xuC_E_yqWU9j1ARV_Vq0AHzs5IXYsXsd0HTQCEIvc/edit', '_blank');
+        }
+        
+        function showResult(message, type) {
+            document.getElementById('result').innerHTML = 
+                `<div class="${type}">${message}</div>`;
+            console.log(message);
+        }
+        
+        // اختبار تلقائي عند التحميل
+        window.onload = testGET;
+    </script>
+</body>
+</html>
